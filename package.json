@@ -1,0 +1,58 @@
+{
+  "name": "paranoia",
+  "description": "",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "format": "npm run format:file -- \"./**/*.{js,json,lintstagedrc,md,prettierrc,ts}\"",
+    "format:file": "prettier --write",
+    "lint": "npm run lint:source && npm run lint:test",
+    "lint:source": "tslint -p tsconfig.json -c tslint.json -e \"**/*{fixture,spec}.ts\" --fix",
+    "lint:test": "npm run lint:testfile -- **/*spec.ts",
+    "lint:testfile": "tslint -p tsconfig.json -c tslint.test.json -e \"**/*fixture.ts\" --fix",
+    "test": "npm run test:unit && npm run test:mutation",
+    "test:mutation": "stryker run",
+    "test:unit": "jest --coverage",
+    "watch": "npm run test:unit -- --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@stryker-mutator/core": "2.0.0",
+    "@stryker-mutator/html-reporter": "2.0.0",
+    "@stryker-mutator/jest-runner": "2.0.0",
+    "@stryker-mutator/typescript": "2.0.0",
+    "@types/jest": "24.0.13",
+    "commitizen": "3.1.1",
+    "cz-conventional-changelog": "2.1.0",
+    "husky": "^2.3.0",
+    "jest": "24.8.0",
+    "jest-html-reporter": "2.5.0",
+    "jest-junit": "6.4.0",
+    "lint-staged": "^8.1.7",
+    "prettier": "1.17.1",
+    "rimraf": "2.6.3",
+    "ts-jest": "24.0.2",
+    "ts-node": "8.1.0",
+    "tslint": "5.16.0",
+    "tslint-clean-code": "0.2.9",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-sonarts": "1.9.0",
+    "typescript": "3.4.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

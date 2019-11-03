@@ -1,0 +1,11 @@
+{
+  "linters": {
+    "*.{js,json,lintstagedrc,md,prettierrc,ts}": [
+      "npm run format:file --",
+      "git add"
+    ],
+    "*.ts": ["npm run lint:source --", "git add"],
+    "*.spec.ts": ["npm run lint:testfile --", "git add"]
+  },
+  "concurrent": false
+}
